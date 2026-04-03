@@ -7,8 +7,9 @@ const app = express();
 app.use(cors());
 
 // Use environment variables in production!
-const API_KEY = "APIgdpva63HJnaM";
-const API_SECRET = "lsQKKuobqAo0ltKMaAep6AfzijII3CMGbtUx0frKptcB";
+// ✅ Professional way: Securely get keys from Render's settings
+const API_KEY = process.env.LIVEKIT_API_KEY || "APIgdpva63HJnaM";
+const API_SECRET = process.env.LIVEKIT_API_SECRET || "lsQKKuobqAo0ltKMaAep6AfzijII3CMGbtUx0frKptcB";
 
 app.get('/get-token', async (req, res) => {
   const { username, role, room } = req.query; // Get room from query
@@ -36,11 +37,7 @@ app.get('/get-token', async (req, res) => {
   const token = await at.toJwt();
   res.json({ token });
 })
-
-// Look at the very bottom of your server file:
-const PORT = 3000;
-
-// CHANGE THIS LINE to include '0.0.0.0':
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is now reachable by the APK at http://10.0.2.2:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
