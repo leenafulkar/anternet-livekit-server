@@ -8,8 +8,8 @@ app.use(cors());
 
 // Use environment variables in production!
 // ✅ Professional way: Securely get keys from Render's settings
-const API_KEY = process.env.LIVEKIT_API_KEY || "APITz8SKL9Ayb8b";
-const API_SECRET = process.env.LIVEKIT_API_SECRET || "QkC1PDgrhHEsBWUgyyLMgqloUZNTPhktFJg2igVfYEe";
+const API_KEY = process.env.LIVEKIT_API_KEY";
+const API_SECRET = process.env.LIVEKIT_API_SECRET";
 
 app.get('/get-token', async (req, res) => {
   const { username, role, room } = req.query; // Get room from query
